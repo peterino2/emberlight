@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         
         HandlePredictions();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && debounce && !IsPointerOverUIObject() && solid)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && debounce && !IsPointerOverUIObject() && solid && is_targeting)
         {
             targeting_ability.try_activate(targetingPosition);
             endTargeting();
