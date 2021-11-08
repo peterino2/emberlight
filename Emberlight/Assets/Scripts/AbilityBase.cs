@@ -23,9 +23,14 @@ public class AbilityBase : MonoBehaviour
         
     }
     
+    public virtual string get_tooltip()
+    {
+        return tooltip;
+    }
+    
     public virtual string get_name()
     {
-        return "default ability";
+        return ability_name;
     }
     
     public virtual void begin_targeting()

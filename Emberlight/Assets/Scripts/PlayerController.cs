@@ -51,11 +51,11 @@ public class PlayerController : MonoBehaviour
         {
             if (!is_targeting)
             {
-                if (Input.GetKeyDown(KeyCode.Alpha1)) Selected.Abilities[0].begin_targeting();
-                if (Input.GetKeyDown(KeyCode.Alpha2)) Selected.Abilities[1].begin_targeting();
-                if (Input.GetKeyDown(KeyCode.Alpha3)) Selected.Abilities[2].begin_targeting();
-                if (Input.GetKeyDown(KeyCode.Alpha4)) Selected.Abilities[3].begin_targeting();
-                if (Input.GetKeyDown(KeyCode.Alpha5)) Selected.Abilities[4].begin_targeting();
+                if (Input.GetKeyDown(KeyCode.Alpha1) && Selected.Abilities.Count > 0) Selected.Abilities[0].begin_targeting();
+                if (Input.GetKeyDown(KeyCode.Alpha2) && Selected.Abilities.Count > 1) Selected.Abilities[1].begin_targeting();
+                if (Input.GetKeyDown(KeyCode.Alpha3) && Selected.Abilities.Count > 2) Selected.Abilities[2].begin_targeting();
+                if (Input.GetKeyDown(KeyCode.Alpha4) && Selected.Abilities.Count > 3) Selected.Abilities[3].begin_targeting();
+                if (Input.GetKeyDown(KeyCode.Alpha5) && Selected.Abilities.Count > 4) Selected.Abilities[4].begin_targeting();
             }
         }
         
