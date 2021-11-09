@@ -39,7 +39,7 @@ public class DamageNumber : MonoBehaviour
         if (dt > alive_time)
         {
             gameObject.SetActive(false);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
