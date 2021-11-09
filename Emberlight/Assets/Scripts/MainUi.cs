@@ -9,7 +9,6 @@ public class MainUi : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private PlayerController player;
-
     [SerializeField] private Text name_ref;
     [SerializeField] private Text Health_ref;
     [SerializeField] private Text AP_ref;
@@ -17,10 +16,9 @@ public class MainUi : MonoBehaviour
     [SerializeField] private Text TargetHealth_ref;
     [SerializeField] private Text AbilitiesHeader_ref;
     [SerializeField] private Image help_dialog;
-    
     [SerializeField] private GameObject button_prefab;
-
     [SerializeField] private List<UiAbilityActivationButton> buttons;
+    [SerializeField] private List<Image> portraits;
 
     private bool show_help = false;
     private float dt = 0.0f;
@@ -29,6 +27,19 @@ public class MainUi : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         Assert.IsNotNull(player);
         help_dialog.gameObject.SetActive(false);
+        for (int i = 0; i < portraits.Count; i++)
+        {
+            portraits[i].gameObject.GetComponent<ClickablePortrait>().party_index = i;
+            portraits[i].gameObject.SetActive(false);
+        }
+
+        var pc = FindObjectOfType<PlayerController>();
+        for (int i = 0; i < pc.party_members.Count; i++)
+        { 
+            portraits[i].gameObject.SetActive(true);
+            portraits[i].sprite = pc.party_members[i].portrait;
+        }
+        
     }
 
     public void ToggleHelp()

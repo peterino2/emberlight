@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class CharacterBase : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class CharacterBase : MonoBehaviour
     private Transform movement_goal;
     private PlayerController _playerController;
 
+    [SerializeField] public Sprite portrait;
+
+    [SerializeField] public int teamid;
     [SerializeField] public List<AbilityBase> Abilities = new List<AbilityBase>();
     
     [SerializeField] public float health = 100.0f;
@@ -18,7 +23,9 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] public float ap = 6.0f;
     [SerializeField] public float max_ap = 6.0f;
     [SerializeField] public string char_name = "joe";
-    [SerializeField] string[]  names =  new string[]{"joe", "biden", "kazuha", "don", "cheadle"}; 
+    [SerializeField] string[]  names =  {"joe", "biden", "kazuha", "don", "cheadle"}; 
+    
+    [SerializeField] private GameObject damageFloaterPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +62,25 @@ public class CharacterBase : MonoBehaviour
             highlighter.SetActive(false);
         }
     }
+    
+    public void ShowDamageFloater(int i)
+    {
+        var x = Instantiate(damageFloaterPrefab);
+        x.GetComponent<DamageNumber>().setText(string.Format("{0}", i));
+        x.transform.position = transform.position + new Vector3(0,0,0);
+    }
 
+    public void TakeDamage(int i)
+    {
+        ShowDamageFloater(i);
+        health -= i;
+        if (health <= 0) die();
+    }
+
+    public void die()
+    {
+        transform.Rotate(90, 0 ,0);
+    }
     // Update is called once per frame
     void Update()
     {

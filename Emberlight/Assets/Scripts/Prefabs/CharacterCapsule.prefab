@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlighter: {fileID: 3445112795343730556}
+  portrait: {fileID: -2413806693520163455, guid: 3c40aa455e3b4ae4a9bc48ec2c901b34, type: 3}
+  teamid: 0
   Abilities:
   - {fileID: 6172025599392964362}
   - {fileID: 6172025599392964362}
@@ -222,6 +224,7 @@ MonoBehaviour:
   - kazuha
   - don
   - cheadle
+  damageFloaterPrefab: {fileID: 7542716484403394789, guid: 2302e94d3f93f4d4a84e682eaf20be39, type: 3}
 --- !u!195 &3445112796850014901
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public CharacterBase Selected;
-    private NavMeshAgent SelectedNavMeshAgent;
 
     [SerializeField] private GameObject targeting_obj;
 
@@ -16,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private AbilityBase targeting_ability;
 
     public CharacterBase target_character;
+    
+    [SerializeField] public List<CharacterBase> party_members;
 
     NavMeshAgent na;
     [SerializeField] private LineRenderer navpath;
@@ -37,13 +38,20 @@ public class PlayerController : MonoBehaviour
 
     public void SelectCharacter(CharacterBase obj)
     {
+        if (obj.teamid != 0) return;
         Deselect();
         obj.SetHighlight(true);
         Selected = obj;
         debounce = false;
-        SelectedNavMeshAgent = Selected.GetComponent<NavMeshAgent>();
     }
     [SerializeField]Vector3 targetingPosition = new Vector3();
+
+    public void SelectByPartyId(int id)
+    {
+        Debug.Log(id);
+        if (id >= party_members.Count) return;
+        SelectCharacter(party_members[id]);   
+    }
 
     void HandleKeyboardSlots()
     {
@@ -124,6 +132,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             debounce = true;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            if(Selected)
+                Selected.TakeDamage(10);
         }
     }
 
